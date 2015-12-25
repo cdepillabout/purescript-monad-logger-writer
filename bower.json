@@ -16,5 +16,8 @@
     "purescript-monoid": "^0.3",
     "purescript-tuples": "^0.4",
     "purescript-prelude": "^0.1"
+  },
+  "devDependencies": {
+    "purescript-super-spec": "~0.8.0"
   }
 }
