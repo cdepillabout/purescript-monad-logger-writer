@@ -1,14 +1,14 @@
 {
-  "name": "purescript-in-purescript",
-  "version": "0.0.0",
-  "description": "purescript-in-purescript",
+  "name": "purescript-monad-logger-writer",
+  "version": "0.0.1",
+  "description": "Replacement for WriterT Eff that uses mutable references",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/cdepillabout/purescript-in-purescript.git"
+    "url": "git+ssh://git@github.com/cdepillabout/purescript-monad-logger-writer.git"
   },
   "keywords": [
     "purescript"
@@ -16,9 +16,9 @@
   "author": "Dennis Gosnell <cdep.illabout@gmail.com>",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/cdepillabout/purescript-in-purescript/issues"
+    "url": "https://github.com/cdepillabout/purescript-monad-logger-writer/issues"
   },
-  "homepage": "https://github.com/cdepillabout/purescript-in-purescript#readme",
+  "homepage": "https://github.com/cdepillabout/purescript-monad-logger-writer",
   "dependencies": {
     "bower": "^1.7.1",
     "gulp": "^3.9.0",
