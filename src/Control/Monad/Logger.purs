@@ -48,20 +48,3 @@ instance monadWriterLogger :: Monoid w => MonadWriter w (Logger eff w) where
     listen logger  = Logger $ \ref -> do
         Tuple a w <- runLogger' logger
         modifyRef' ref $ \w' -> { state: w' <> w, value: Tuple a w }
-
--- instance (Monoid w) => Monad (Logger w) where
---   return = pure
---   Logger l >>= f = Logger $ \r -> l r >>= \a -> runLogger (f a) r
-
--- instance (Monoid w) => MonadIO (Logger w) where
---   liftIO = Logger . const
-
--- instance (Monoid w) => MonadWriter w (Logger w) where
---   tell w = Logger $ \r -> atomicModifyIORef' r $ \w' -> (mappend w' w, ())
---   listen l = Logger $ \r -> do
---     (a, w) <- liftIO (runLogger' l)
---     atomicModifyIORef' r $ \w' -> (mappend w' w, (a, w))
---   pass l = Logger $ \r -> do
---     ((a, f), w) <- liftIO (runLogger' l)
---     atomicModifyIORef' r $ \w' -> (mappend w' (f w), a)
-
