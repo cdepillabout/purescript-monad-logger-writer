@@ -3,11 +3,13 @@ module Control.Monad.Logger where
 
 import Prelude
     ( class Monad, class Bind, class Apply, class Applicative, class Functor
-    , bind, (>>=), (<*>), pure, const, (<<<), map, return, ($)
+    , bind, (>>=), (<*>), (<>), pure, const, (<<<), map, return, ($)
     )
 
 import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Ref (REF, Ref, readRef, newRef)
+import Control.Monad.Eff.Ref (REF, Ref, readRef, modifyRef', newRef)
+import Control.Monad.Writer (class MonadWriter, tell)
+import Data.Functor (($>))
 import Data.Monoid (class Monoid, mempty)
 import Data.Tuple (Tuple(..))
 
@@ -37,6 +39,15 @@ instance bindLogger :: Bind (Logger eff w) where
     bind (Logger v) f = Logger \ref -> v ref >>= \a -> runLogger (f a) ref
 
 instance monadLogger :: Monad (Logger eff w)
+
+instance monadWriterLogger :: Monoid w => MonadWriter w (Logger eff w) where
+    pass logger = Logger \ref -> do
+        Tuple (Tuple a f) w <- runLogger' logger
+        modifyRef' ref $ \w' -> { state: w' <> (f w), value: a }
+    writer (Tuple a w) = tell w $> a
+    listen logger  = Logger $ \ref -> do
+        Tuple a w <- runLogger' logger
+        modifyRef' ref $ \w' -> { state: w' <> w, value: Tuple a w }
 
 -- instance (Monoid w) => Monad (Logger w) where
 --   return = pure
