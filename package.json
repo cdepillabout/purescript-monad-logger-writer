@@ -1,6 +1,6 @@
 {
   "name": "purescript-monad-logger-writer",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Replacement for WriterT Eff that uses mutable references",
   "main": "index.js",
   "scripts": {
