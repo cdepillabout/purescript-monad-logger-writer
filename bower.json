@@ -20,5 +20,9 @@
   "devDependencies": {
     "purescript-super-spec": "^0.8",
     "purescript-console": "^0.1"
+  },
+  "repository": {
+	  "type": "git",
+	  "url": "git://github.com/cdepillabout/purescript-monad-logger-writer"
   }
 }
