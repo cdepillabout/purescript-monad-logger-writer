@@ -8,8 +8,7 @@ import Prelude
 
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Ref (REF, Ref, readRef, modifyRef', newRef)
-import Control.Monad.Writer (class MonadWriter, tell)
-import Data.Functor (($>))
+import Control.Monad.Writer (class MonadWriter)
 import Data.Monoid (class Monoid, mempty)
 import Data.Tuple (Tuple(..))
 

@@ -1,29 +1,31 @@
 module Test.Main where
 
 import Prelude
+    ( class Eq, class Show, Unit, bind, ($), (<<<), pure, (<>), (>>=), map
+    , show, id, (+), (<$>), const, return
+    )
 
 import Data.Functor (($>))
 import Control.Apply ((*>))
-import Control.Monad.Aff
-import Control.Monad.Eff
-import Control.Monad.Eff.Class
+import Control.Monad.Aff (Aff)
+import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Console (CONSOLE)
 import Control.Monad.Eff.Exception (EXCEPTION)
 import Control.Monad.Eff.Random (RANDOM)
-import Control.Monad.Eff.Ref (REF, Ref, readRef, writeRef, newRef)
+import Control.Monad.Eff.Ref (REF, readRef, writeRef, newRef)
 import Control.Monad.Writer.Class (listen, tell, writer)
 import Data.Foldable (sequence_)
-import Data.Monoid (class Monoid, mempty)
+import Data.Monoid (mempty)
 import Data.Monoid.Additive (Additive(..))
 import Data.String (length)
 import Data.Tuple (Tuple(..))
-import Test.QuickCheck.Arbitrary (class Arbitrary, arbitrary)
-import Test.Spec (describe, pending, it, prop)
+import Test.Spec (describe, it)
 import Test.Spec.Runner (Process, run)
 import Test.Spec.Assertions (shouldEqual)
 import Test.Spec.Reporter.Console (consoleReporter)
 
-import Control.Monad.Logger (Logger(..), runLogger')
+import Control.Monad.Logger (Logger(..))
 
 runLoggerEff :: forall eff w a
               . Logger eff w a
