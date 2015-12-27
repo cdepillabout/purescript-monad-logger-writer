@@ -3,7 +3,7 @@ sudo: false
 node_js:
     - 0.10
 install:
-    - npm install purescript pulp -g
+    - npm install -g
     - psc --version
     - pulp --version
     - pulp dep update
