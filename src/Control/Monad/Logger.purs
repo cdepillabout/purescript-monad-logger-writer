@@ -44,7 +44,8 @@ instance monadWriterLogger :: Monoid w => MonadWriter w (Logger eff w) where
     pass logger = Logger \ref -> do
         Tuple (Tuple a f) w <- runLogger' logger
         modifyRef' ref $ \w' -> { state: w' <> (f w), value: a }
-    writer (Tuple a w) = tell w $> a
+    writer (Tuple a w) = Logger $ \ref -> do
+        modifyRef' ref $ \w' -> { state: w' <> w, value: a }
     listen logger  = Logger $ \ref -> do
         Tuple a w <- runLogger' logger
         modifyRef' ref $ \w' -> { state: w' <> w, value: Tuple a w }
