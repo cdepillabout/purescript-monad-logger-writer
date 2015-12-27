@@ -12,6 +12,7 @@ import Control.Monad.Writer (class MonadWriter)
 import Data.Monoid (class Monoid, mempty)
 import Data.Tuple (Tuple(..))
 
+-- | Wrapper around `Ref w -> Eff (ref :: REF | eff) a`.
 newtype Logger eff w a = Logger (Ref w -> Eff (ref :: REF | eff) a)
 
 runLogger :: forall eff w a . Logger eff w a -> Ref w -> Eff (ref :: REF | eff) a
