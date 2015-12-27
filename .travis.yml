@@ -3,7 +3,8 @@ sudo: false
 node_js:
     - 0.10
 install:
-    - npm install -g
+    - npm install
+    - export PATH="node_modules/.bin:$PATH"
     - psc --version
     - pulp --version
     - pulp dep update
